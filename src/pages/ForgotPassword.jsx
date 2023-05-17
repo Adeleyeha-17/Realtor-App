@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import OAuth from '../components/OAuth.jsx'
+import { toast } from 'react-toastify';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 export default function ForgotPassword() {
   const [formData, setFormData] = useState({
@@ -18,6 +20,19 @@ export default function ForgotPassword() {
 
     }))
   }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email)
+      toast.success("Password sent")
+    } catch (error) {
+      toast.error("input correct email")
+    }
+  }
+
   return (
     <section>
       <h1 className="text-3xl text-center font-bold mt-6">Forgot Password</h1>
@@ -25,8 +40,9 @@ export default function ForgotPassword() {
         <div className="md:w-[60%] lg:w-[50%] mb-12 md:mb-6 md:items-center justify-center">
           <img src="https://images.unsplash.com/photo-1682347546932-f397ccf63940?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="beach" className="ml-6 rounded-2xl h-84 w-84" />
         </div>
+
         <div className="w-full md:w-[60%] lg:w-[40%] lg:ml-20 sm:w-[50%] items-center justify-center">
-          <form>
+          <form onSubmit={onSubmit}>
             <input className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-4" type="text" name="email" value={email} placeholder="Email Address" onChange={onChange} />
            
             <div className="flex justify-between whitespace-nowrap  sm:text-sm"> 
