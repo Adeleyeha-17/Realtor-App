@@ -65,7 +65,7 @@ try {
       <section>
         <h1 className="text-3xl text-center font-bold mt-6 mb-3">Profile</h1>
       <div className="sm:w-full md:w-[85%] mt-6 px-3 mx-auto">
-      <form>
+      <form onSubmit={onSubmit}>
           {/* Name input */}
           <input type="text" name="fullname" value={fullname} onChange={onChange} disabled={!changeDetails} className={`w-full rounded text-xl text-gray-700 bg-white px-4 py-2 my-2 border border-gray-300 transition ease-in-out ${changeDetails && "bg-red-200 focus:bg-red-200"}`}/>
           

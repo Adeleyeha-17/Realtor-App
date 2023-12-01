@@ -6,14 +6,14 @@ export default function Header() {
 
 function pathMatchRoute(route) {
   return location.pathname === route
-    ? 'text-black border-b-4 border-red-500'
-    : 'text-gray-400 border-b-4 border-transparent';
+    ? 'text-black border-b-4 border-red-500 rounded'
+    : 'text-gray-400 border-b-4 border-transparent rounded';
 }
 
 
 
   return (
-    <div className="bg-white border-b shadow-sm sticky top-0 z-50">
+    <div className="bg-white border-b shadow-sm sticky left-0 top-0 z-50">
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
         <div>
           <img src="/rdc-logo-default.svg" alt="logo" className="h-5 cursor-pointer" 
