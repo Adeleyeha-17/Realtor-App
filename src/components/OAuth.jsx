@@ -31,7 +31,14 @@ export default function OAuth() {
       navigate("/");
       console.log(user);
     } catch (error) {
-      toast.error("Could not authorize with Google");
+      if (error.code === 'auth/cancelled-popup-request') {
+        // Handle canceled popup request
+        console.error("Popup request was cancelled");
+      } else {
+        // Handle other errors
+        toast.error("Could not authorize with Google");
+        console.error(error);
+      }
     }
   }
 
